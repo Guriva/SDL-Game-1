@@ -1,7 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
-#include "SDL/include/SDL.h"
+#include "ModuleWindow.h"
 
 ModuleInput::ModuleInput()
 {}
@@ -30,12 +30,15 @@ bool ModuleInput::Init()
 update_status ModuleInput::Update()
 {
 	SDL_PumpEvents();
+	update_status ret = UPDATE_CONTINUE;
 
 	keyboard = SDL_GetKeyboardState(NULL);
-	update_status ret = UPDATE_CONTINUE;
-	if (keyboard[SDL_SCANCODE_ESCAPE])
+	SDL_PollEvent(&event);
+
+	
+	if (keyboard[SDL_SCANCODE_ESCAPE] || (event.type == SDL_QUIT))
 	{
-		ret = UPDATE_ERROR;
+		ret = UPDATE_STOP;
 	}
 	// Homework: Make the application close up when pressing “X” button of the window
 	return ret;
