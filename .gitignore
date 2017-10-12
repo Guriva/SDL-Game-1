@@ -33,3 +33,5 @@
 
 # Directories
 Debug/
+Release/
+.vs/

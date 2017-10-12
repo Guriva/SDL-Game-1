@@ -1,6 +1,7 @@
 #include "Module.h"
 #include "Globals.h"
-#include "SDL/include/SDL.h"
+
+struct SDL_Texture;
 
 class ModuleScene : public Module {
 public:
@@ -8,9 +9,10 @@ public:
 	~ModuleScene();
 
 	bool Init();
+	bool Start();
 	update_status Update();
 	bool CleanUp();
 
-public:
+private:
 	SDL_Texture* texture = nullptr;
 };
