@@ -36,6 +36,5 @@ update_status ModuleScene::Update() {
 }
 
 bool ModuleScene::CleanUp() {
-	//delete(texture);
 	return true;
 }

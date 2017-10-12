@@ -26,21 +26,27 @@ bool ModuleInput::Init()
 	return ret;
 }
 
-// Called every draw update
-update_status ModuleInput::Update()
-{
-	SDL_PumpEvents();
+update_status ModuleInput::PreUpdate() {
 	update_status ret = UPDATE_CONTINUE;
 
+	SDL_PumpEvents();
 	keyboard = SDL_GetKeyboardState(NULL);
 	SDL_PollEvent(&event);
 
-	
+	return ret;
+
+}
+
+// Called every draw update
+update_status ModuleInput::Update()
+{
+	update_status ret = UPDATE_CONTINUE;
+
 	if (keyboard[SDL_SCANCODE_ESCAPE] || (event.type == SDL_QUIT))
 	{
 		ret = UPDATE_STOP;
 	}
-	// Homework: Make the application close up when pressing “X” button of the window
+
 	return ret;
 }
 
